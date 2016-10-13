@@ -1,1 +1,21 @@
-<h1>This is tab2 html</h1>
+<link rel="stylesheet" href="tab2/tab2.css">
+<div class="app-tab2">
+<h2>This is tab2 template</h2>
+<input type="text" ng-model="filtertext"/>
+<table border="1" style="width:100%; padding:8px;">
+	<tr ng-repeat="person in persons | filter:filtertext" ng-click="addMember(person.id)">
+		<td>
+			<person-name-tooltip person="person"></person-name-tooltip>
+		</td>
+		<td>
+			{{person.job}}
+		</td>
+		<td>
+			{{person.age}}
+		</td>
+		<td>
+			{{person.grade}}
+		</td>
+	</tr>
+</table>
+</div>
