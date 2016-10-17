@@ -20,19 +20,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.css">
 
   <script src="app.js"></script>
-<!--   <style>.active { color: red; font-weight: bolder; }</style> -->
 </head>
-<body>
+<body ng-cloak>
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 <div style="width:100%;">
-<div style="float:left; width:70%;">
-  <a ui-sref="tab1" ui-sref-active="active">Tab 1</a>
-  <a ui-sref="tab2" ui-sref-active="active">Tab 2</a>
+<div class="mainleftside">
+<!--   <a ui-sref="tab1" ui-sref-active="tabactive">Tab 1</a>
+  <a ui-sref="tab2" ui-sref-active="tabactive">Tab 2</a> -->
+<ul class="nav nav-tabs">
+    <li ui-sref="tab1" ui-sref-active="active"><a>Tab 1</a></li>
+    <li ui-sref="tab2" ui-sref-active="active"><a>Tab 2</a></li>
+</ul>
   <ui-view></ui-view>
 </div>
-<div style="float:right; width:30%;">
+<div class="mainrightside">
   <team-manager/>
 </div>
 </div>
@@ -42,8 +45,6 @@
   <script src="tab2/tab2.js"></script>
   <script src="tab2/tab2Ctrl.js"></script>
   <script src="components/components.js"></script>
-  <script src="components/personmanager/personmanager.js"></script>
-  <script src="components/personmanager/personmanagerDirective.js"></script>
   <script src="components/teammanager/teammanager.js"></script>
   <script src="components/teammanager/teammanagerDirective.js"></script>
   <script src="components/typeahead/typeahead.js"></script>

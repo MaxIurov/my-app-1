@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="../components/typeahead/typeahead.css">
-<input type="text" ng-model="model" placeholder="{{prompt}}" ng-keydown="selected=false" />
+<input type="text" ng-model="query" placeholder="{{prompt}}" ng-keydown="selected=false" />
 <br/>
-
-<div class="items" ng-hide="!model.length || selected">
-  <div class="item" ng-repeat="item in items | filter:model  track by $index" ng-click="handleSelection(item.id)" style="cursor:pointer" ng-class="{active:isCurrent($index)}"
-  ng-mouseenter="setCurrent($index)">
-    <p class="title">{{item[title]}}</p>
-    <p class="subtitle">{{item[subtitle]}}</p>
-    <p class="subsubtitle">{{item[subsubtitle]}}</p>
-  </div>
+<div class="items" ng-hide="!query.length || selected">
+	<div class="item" ng-repeat="item in items | filter:search track by $index" ng-click="handleSelection(item)"
+	style="cursor:pointer" ng-class="{activeitem:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+	<div>
+		<span class="title"><b>{{item[title]}}</b></span> &middot;
+		<span class="subtitle">{{item[subtitle]}}</span> &middot;
+		<span class="subsubtitle">{{item[subsubtitle]}}</span>       
+	<div>
+	</div>
 </div>

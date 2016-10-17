@@ -12,18 +12,17 @@ directive('typeahead',function($timeout) {
 			title: '@',
 			subtitle: '@',
 			subsubtitle: '@',
-			model: '=',
-			onSelect: '&'
+			onSelect: '&',
+			selecteditem: '='
 		},
 		link: function(scope,elem,attrs) {
 			scope.handleSelection = function(selectedItem) {
-			    //scope.model = selectedItem;
-			    scope.current = 0;
-			    scope.selected = true;
+			    scope.selecteditem = selectedItem;
 			    $timeout(function() {
 			      scope.onSelect();
 			    }, 200);
 			};
+			scope.query = '';
 			scope.current = 0;
 			scope.selected = true; // hides the list initially
 			scope.isCurrent = function(index) {
@@ -31,6 +30,13 @@ directive('typeahead',function($timeout) {
 			};
 			scope.setCurrent = function(index) {
 			    scope.current = index;
+			};
+			scope.search = function (row) {
+				return (
+					angular.lowercase(row[scope.title]).indexOf(angular.lowercase(scope.query) || '') !== -1 ||
+					angular.lowercase(row[scope.subtitle]).indexOf(angular.lowercase(scope.query) || '') !== -1 ||
+					angular.lowercase(row[scope.subsubtitle]).indexOf(angular.lowercase(scope.query) || '') !== -1
+					);
 			};
 		},
 		templateUrl: '../components/typeahead/typeahead.html'

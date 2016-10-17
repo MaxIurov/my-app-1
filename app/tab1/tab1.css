@@ -1,3 +1,16 @@
 .app-tab1 {
 
 }
+.typeaheadclass {
+	float: left;
+	width:60%;
+	padding: 4px;
+}
+.rightsideclass {
+	width: auto;
+}
+.tagmanagerclass {
+	overflow-x: auto;
+	padding: 4px;
+	height:75vh;
+}

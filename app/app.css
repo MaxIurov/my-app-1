@@ -1,25 +1,15 @@
 /* app css stylesheet */
-
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+body {
+  height: 100vh;
 }
-
-.menu:before {
-  content: "[";
+.mainleftside {
+  float: left;
+  width:70%;
+  padding: 4px;
 }
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.mainrightside {
+  width: auto;
+  overflow-x: auto;
+  height:70vh;
+  padding: 4px;
 }

@@ -14,13 +14,7 @@ angular.module('myApp.components.teammanager')
         		if (scope.teamName !== "" && scope.teamName !== undefined) {
         			var team = {};
         			team.name = scope.teamName;
-        			/*team.members = [];*/
-                    //test team members
-                    team.members = [
-                    {"id":2,"name":"Maria Sadykov","age":22,"grade":"Junior","job":"Java Developer"},
-                    {"id":22,"name":"Viktor Shandula","age":21,"grade":"Junior","job":"PHP Developer"},
-                    {"id":56,"name":"Andrey Kovalenko","age":21,"grade":"Senior","job":"Python Developer"}
-                    ];
+        			team.members = [];
                     team.id = -1;
         			scope.teams = teamFactory.putTeam(team);
         		}
@@ -29,7 +23,7 @@ angular.module('myApp.components.teammanager')
         	
         	scope.restore = function() {
         		scope.selectedTeam=-1;
-                commonDataExchange.selectedTeam=-1;
+                commonDataExchange.changeSelectedTeam(-1);
         		scope.teamName="";
         	};
 
@@ -52,15 +46,13 @@ angular.module('myApp.components.teammanager')
                 commonDataExchange.changeSelectedTeam(teamID);
             };
 
-            scope.$on('AddTeamMember',function(event,memberID){
-                console.log('teammanager recieved: ',memberID);
+            scope.$on('AddTeamMembers',function(event,members){
+                scope.teams = teamFactory.addTeamMembers(scope.selectedTeam,members);
             });
 
         	scope.regVal=/^[a-zA-Z0-9]*$/;
         	scope.restore();
         	scope.teams=teamFactory.getAll();
-
-            scope.showTooltip = false;
         }
     };
 });

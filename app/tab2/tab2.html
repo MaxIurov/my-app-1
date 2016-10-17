@@ -1,21 +1,36 @@
 <link rel="stylesheet" href="tab2/tab2.css">
 <div class="app-tab2">
-<h2>This is tab2 template</h2>
 <input type="text" ng-model="filtertext"/>
-<table border="1" style="width:100%; padding:8px;">
-	<tr ng-repeat="person in persons | filter:filtertext" ng-click="addMember(person.id)">
-		<td>
-			<person-name-tooltip person="person"></person-name-tooltip>
-		</td>
-		<td>
-			{{person.job}}
-		</td>
-		<td>
-			{{person.age}}
-		</td>
-		<td>
-			{{person.grade}}
-		</td>
-	</tr>
-</table>
+<div class="stafftable">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th ng-click="sortBy('name')">
+            	<span>Name</span>
+            	<span class="sortorder" ng-show="sortTableBy === 'name'" ng-class="{reverse: sortReverse}"></span>
+            </th>
+            <th ng-click="sortBy('job')">
+                <span>Specialisation</span>
+            	<span class="sortorder" ng-show="sortTableBy === 'job'" ng-class="{reverse: sortReverse}"></span>
+            </th>
+            <th ng-click="sortBy('age')">
+                <span>Age</span>
+            	<span class="sortorder" ng-show="sortTableBy === 'age'" ng-class="{reverse: sortReverse}"></span>
+            </th>
+            <th ng-click="sortBy('grade')">
+                <span>Grade</span>
+            	<span class="sortorder" ng-show="sortTableBy === 'grade'" ng-class="{reverse: sortReverse}"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="person in persons | filter:filtertext | orderBy:sortTableBy:sortReverse" ng-click="addMember(person)">
+            <td><person-name-tooltip person="person"></person-name-tooltip></td>
+            <td>{{person.job}}</td>
+            <td>{{person.age}}</td>
+            <td>{{person.grade}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </div>

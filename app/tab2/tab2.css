@@ -1,3 +1,13 @@
 .app-tab2 {
-
+	padding: 4px;
+}
+.stafftable {
+	overflow-x: auto;
+	height:75vh;
+}
+.sortorder:after {
+  content: '\25b2';
+}
+.sortorder.reverse:after {
+  content: '\25bc';
 }

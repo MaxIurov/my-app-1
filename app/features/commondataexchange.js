@@ -4,20 +4,18 @@ var myApp = angular.module('myApp.features.commondataexchange',[]);
 myApp.factory('commonDataExchange',['$rootScope',function($rootScope){
     return {
         selectedTeam: -1,
-        tagManagerIDs: [],
-        changeSelectedTeam: function(newTeam) {
-            this.selectedTeam = newTeam;
-            $rootScope.$broadcast('TeamSelected',this.selectedTeam);
-            return this.selectedTeam;
+        changeSelectedTeam: function(selectTeam) {
+            this.selectedTeam = selectTeam;
+            $rootScope.$broadcast('TeamSelected',selectTeam);
+            return selectTeam;
         },
         deleteTeamMember: function(personID) {
         	$rootScope.$broadcast('MemberDeleted',personID);
         	return personID;
         },
-        addTeamMember: function(personID) {
-            this.tagManagerIDs = [personID];
-            $rootScope.$broadcast('AddTeamMember',personID);
-            return personID;
+        addTeamMembers: function(persons) {
+            $rootScope.$broadcast('AddTeamMembers',persons);
+            return persons;
         }
     };
 }]);

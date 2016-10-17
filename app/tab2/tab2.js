@@ -3,7 +3,6 @@
 angular.module('myApp.tab2', ['ui.router']).
 
 config(['$stateProvider',function config($stateProvider) {
-
     $stateProvider
         .state('tab2', {
         	name: 'tab2',

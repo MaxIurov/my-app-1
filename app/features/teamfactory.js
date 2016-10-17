@@ -20,7 +20,7 @@ myApp.factory('teamFactory', ['$rootScope',function($rootScope){
                 team.id = $rootScope.id;
                 $rootScope.id++;
             }
-            localStorage.setItem('team'+team.id, JSON.stringify(team));
+            localStorage.setItem('team'+team.id, angular.toJson(team));
             return this.getAll();
         },
         getAll: function() {
@@ -61,31 +61,37 @@ myApp.factory('teamFactory', ['$rootScope',function($rootScope){
                                 thisTeam.members.splice(j,1);
                             }
                         }
-                        localStorage.setItem('team'+thisTeam.id, JSON.stringify(thisTeam));
+                        localStorage.setItem('team'+thisTeam.id, angular.toJson(thisTeam));
+                    }
+                }
+            }
+            return this.getAll();
+        },
+        addTeamMembers: function(teamId,members)
+        {
+            for (var i = 0; i < localStorage.length; i++)
+            {
+                if (localStorage.key(i).indexOf('team') !== -1)
+                {
+                    var thisTeam = JSON.parse( localStorage.getItem(localStorage.key(i)) );
+                    if (teamId === thisTeam.id)
+                    {
+                        for (var j=0; j<thisTeam.members.length; j++)
+                        {
+                            for (var k=0; k<members.length; k++)
+                            {
+                                if (thisTeam.members[j].id === members[k].id)
+                                {
+                                    members.splice(k,1);
+                                }
+                            }
+                        }
+                        thisTeam.members = thisTeam.members.concat(members);
+                        localStorage.setItem('team'+thisTeam.id, angular.toJson(thisTeam));
                     }
                 }
             }
             return this.getAll();
         }
-/*        ,
-        addTeamMember: function(teamId,memberId) {
-            for (var i = 0; i < localStorage.length; i++) {
-                if (localStorage.key(i).indexOf('team') !== -1) {
-                    var thisTeam = JSON.parse( localStorage.getItem(localStorage.key(i)) );
-                    if (teamId === thisTeam.id) {
-                        for (var j=0; j<thisTeam.members.length; j++)
-                        {
-                            if (thisTeam.members[j].id === memberId)
-                            {
-                                thisTeam.members.splice(j,1);
-                            }
-                        }
-                        thisTeam.
-                        localStorage.setItem('team'+thisTeam.id, JSON.stringify(thisTeam));
-                    }
-                }
-            }
-            return this.getAll();
-        }*/
     };
 }]);

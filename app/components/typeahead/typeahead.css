@@ -1,3 +1,7 @@
-.active {
+.activeitem {
   background-color: lightblue;
+}
+.items {
+	overflow-x: auto;
+	height:75vh;
 }
