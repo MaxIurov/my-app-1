@@ -2,7 +2,7 @@
 
 angular.module('myApp.components.teammanager')
 
-.directive('teamManager', function (teamFactory,commonDataExchange) {
+.directive('teamManager', ['teamFactory', 'commonDataExchange', function (teamFactory,commonDataExchange) {
 
     return {
         restrict: 'AEC',
@@ -55,4 +55,4 @@ angular.module('myApp.components.teammanager')
         	scope.teams=teamFactory.getAll();
         }
     };
-});
+}]);
