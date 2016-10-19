@@ -1,23 +1,26 @@
 FR_01 myurov
 
-# angular-seed — the seed for AngularJS apps
+Review comments:
 
-This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
-You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
-
-The seed contains a sample AngularJS application and is preconfigured to install the Angular
-framework and a bunch of development and testing tools for instant web development gratification.
+1. delete id property from $rootscope
+  --> added getNewTeamId function, newTeamId is now inside teamFactory
+2. defer - https://habrahabr.ru/post/183008/
+  --> added personHttpService that reads and caches json file data
+3. https://docs.angularjs.org/api/ng/type/$rootScope.Scope - > $on(name, listener);
+  --> now i know how to unsubscribe from event, but here i need to monitor changes to sync parts of application
+————————
+4. почитать - > https://docs.angularjs.org/api/ng/filter/filter
+  --> added $filter (in Tab2Ctrl Controller) and .filter (myCustomFilter for typeahead Directive)
+5. https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$digest
+6. http://blog.thoughtram.io/angularjs/2014/10/14/exploring-angular-1.3-one-time-bindings.html
+  --> added some one time bindings
 
 ### Run the Application
 
-We have preconfigured the project with a simple development web server.  The simplest way to start
-this server is:
-
+The simplest way to start this server is:
 ```
 npm start
 ```
-
 Now browse to the app at `http://localhost:8000/index.html`.
 
 
@@ -34,8 +37,9 @@ app/                    --> all of the source files for the application
   features/             --> contains all app factories
     features.js           --> module to bind features modules
     commondataexchange.js --> factory for sharing data between controllers and directives
-    personfactory.js      --> factory gets data from staff.json
+    personfactory.js      --> factory gets data from personHttpService
     teamfactory.js        --> manages team related data loading and saving
+    personhttpservice.js  --> service to read and cache json file
   tab1/                 --> the tab1 view template and logic
   tab2/                 --> the tab2 view template and logic
   app.js                --> main application module

@@ -1,9 +1,0 @@
-AngularJS
-
-1. delete id property from $rootscope
-2. defer - https://habrahabr.ru/post/183008/
-3. https://docs.angularjs.org/api/ng/type/$rootScope.Scope - > $on(name, listener);
-————————
-4. почитать - > https://docs.angularjs.org/api/ng/filter/filter
-5. https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$digest
-6. http://blog.thoughtram.io/angularjs/2014/10/14/exploring-angular-1.3-one-time-bindings.html

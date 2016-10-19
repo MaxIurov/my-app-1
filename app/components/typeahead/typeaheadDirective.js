@@ -2,7 +2,7 @@
 
 angular.module('myApp.components.typeahead').
 
-directive('typeahead',function($timeout) {
+directive('typeahead',['$timeout','myCustomFilter',function($timeout,myCustomFilter) {
 	return {
 		restrict: 'AEC',
 		transclude: true,
@@ -31,14 +31,18 @@ directive('typeahead',function($timeout) {
 			scope.setCurrent = function(index) {
 			    scope.current = index;
 			};
-			scope.search = function (row) {
+			scope.applyTAFilter = function(filterstring) {
+				scope.selected = false;
+				scope.filteredItems = myCustomFilter(scope.items,scope.title,scope.subtitle,scope.subsubtitle,filterstring);
+			};
+/*			scope.search = function (row) {
 				return (
 					angular.lowercase(row[scope.title]).indexOf(angular.lowercase(scope.query) || '') !== -1 ||
 					angular.lowercase(row[scope.subtitle]).indexOf(angular.lowercase(scope.query) || '') !== -1 ||
 					angular.lowercase(row[scope.subsubtitle]).indexOf(angular.lowercase(scope.query) || '') !== -1
 					);
-			};
+			};*/
 		},
 		templateUrl: '../components/typeahead/typeahead.html'
 	};
-});
+}]);

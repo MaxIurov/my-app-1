@@ -2,7 +2,7 @@
 
 angular.module('myApp.tab1').
 
-controller('Tab1Ctrl', function Tab1Ctrl($scope,personFactory,commonDataExchange) {
+controller('Tab1Ctrl', ['$scope','personFactory','commonDataExchange',function ($scope,personFactory,commonDataExchange) {
 	personFactory.getAll().then(function(data) {
 		$scope.persons = data;
 	});
@@ -43,4 +43,4 @@ controller('Tab1Ctrl', function Tab1Ctrl($scope,personFactory,commonDataExchange
 			}
 		}
 	});
-});
+}]);

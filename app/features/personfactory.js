@@ -1,7 +1,43 @@
 'use strict';
 var myApp = angular.module('myApp.features.personfactory',[]);
 
-myApp.factory('personFactory', ['$http', function($http){
+myApp.factory('personFactory', ['personHttpService', function(personHttpService){
+	var personList = {};
+
+	personList.getAll = function() {
+		return personHttpService.getStaff();
+	};
+
+	personList.getPerson = function(personID) {
+		return personHttpService.getStaff().then(function(pList) {
+			for (var i = 0; i < pList.length; i++) {
+				if (pList[i].id === personID) {
+					return pList[i];
+				}
+			}
+		});
+	};
+
+	personList.getPersons = function(personIDs) {
+		return personHttpService.getStaff().then(function(pList) {
+			var persons = [];
+			for (var i = 0; i < pList.length; i++) {
+				for (var j = 0; j < personIDs.length; j++)
+				{
+					if (pList[i].id === personIDs[j])
+					{
+						persons.push(pList[i]);
+					}
+				}
+			}
+			return persons;
+		});
+	};
+
+	return personList;
+}]);
+
+/*myApp.factory('personFactory', ['$http', function($http){
 	return {
 		getAll: function() {
 			return $http.get('staff.json').then(function(resp){
@@ -34,4 +70,4 @@ myApp.factory('personFactory', ['$http', function($http){
 			});
 		}
 	}
-}]);
+}]);*/

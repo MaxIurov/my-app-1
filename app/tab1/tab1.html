@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="tab1/tab1.css">
 <div class="app-tab1">
 	<div class="typeaheadclass">
-		<typeahead items="persons" prompt="Start typing" title="name" subtitle="job" subsubtitle="grade" model="persId" selecteditem="selPers" on-select="onItemSelected()"></typeahead>
+		<typeahead items="::persons" prompt="Start typing" title="name" subtitle="job" subsubtitle="grade" selecteditem="selPers" on-select="onItemSelected()"></typeahead>
 	</div>
 	<div class="rightsideclass">
 		<button ng-style="btnRefresh" ng-disabled="((tagManager.length==0) || (selectedTeam==-1))" ng-click="btnRefreshClicked()">Refresh</button>
 		<br>
 		<div class="tagmanagerclass">
 			<div>
-			<pre class="alert alert-info" ng-repeat="tagItem in tagManager" ng-click="deleteTagItem(tagItem.id)"><person-name-tooltip person="tagItem"></person-name-tooltip></pre>
+			<pre class="alert alert-info" ng-repeat="tagItem in tagManager" ng-click="deleteTagItem(tagItem.id)"><person-name-tooltip person="::tagItem"></person-name-tooltip></pre>
 			</div>
 		</div>
 	</div>

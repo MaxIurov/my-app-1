@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../components/typeahead/typeahead.css">
-<input type="text" ng-model="query" placeholder="{{prompt}}" ng-keydown="selected=false" />
+<!-- <input type="text" ng-model="query" placeholder="{{prompt}}" ng-keydown="selected=false" />
 <br/>
 <div class="items" ng-hide="!query.length || selected">
 	<div class="item" ng-repeat="item in items | filter:search track by $index" ng-click="handleSelection(item)"
@@ -8,6 +8,18 @@
 		<span class="title"><b>{{item[title]}}</b></span> &middot;
 		<span class="subtitle">{{item[subtitle]}}</span> &middot;
 		<span class="subsubtitle">{{item[subsubtitle]}}</span>       
+	</div>
+	</div>
+</div> -->
+<input type="text" ng-model="query" placeholder="{{prompt}}" ng-keyup="applyTAFilter(query)"/>
+<br/>
+<div class="items" ng-hide="!query.length || selected">
+	<div class="item" ng-repeat="item in filteredItems track by $index" ng-click="handleSelection(item)"
+	style="cursor:pointer" ng-class="{activeitem:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
 	<div>
+		<span class="title"><b>{{item[title]}}</b></span> &middot;
+		<span class="subtitle">{{item[subtitle]}}</span> &middot;
+		<span class="subsubtitle">{{item[subsubtitle]}}</span>       
+	</div>
 	</div>
 </div>

@@ -2,11 +2,17 @@
 
 angular.module('myApp.tab2').
 
-controller('Tab2Ctrl', function Tab2Ctrl($scope,personFactory,commonDataExchange) {
+controller('Tab2Ctrl', ['$scope','$filter','personFactory','commonDataExchange',function ($scope,$filter,personFactory,commonDataExchange) {
 	personFactory.getAll().then(function(data) {
 		$scope.persons = data;
+		$scope.filteredPersons = data;
 	});
 	$scope.selectedTeam = commonDataExchange.selectedTeam;
+	$scope.$on('TeamSelected',function(event,teamID) { $scope.selectedTeam = teamID; });
+
+	$scope.applyPersonFilter = function(filterstring) {
+		$scope.filteredPersons = $filter('filter')($scope.persons, filterstring);
+	}
 
 	$scope.sortTableBy = 'name';
 	$scope.sortReverse = true;
@@ -16,9 +22,8 @@ controller('Tab2Ctrl', function Tab2Ctrl($scope,personFactory,commonDataExchange
 		$scope.sortTableBy = colClicked;
 	};
 
-	$scope.$on('TeamSelected',function(event,teamID) { $scope.selectedTeam = teamID; });
 	$scope.addMember = function(person) {
 		var persons = [person];
 		commonDataExchange.addTeamMembers(persons);
 	};
-});
+}]);
