@@ -2,7 +2,7 @@
 
 angular.module('myApp.components.teammanager')
 
-.directive('teamManager', ['teamFactory', 'commonDataExchange', function (teamFactory,commonDataExchange) {
+.directive('teamManager', ['$rootScope','teamFactory', 'commonDataExchange', function ($rootScope,teamFactory,commonDataExchange) {
 
     return {
         restrict: 'AEC',
@@ -46,9 +46,11 @@ angular.module('myApp.components.teammanager')
                 commonDataExchange.changeSelectedTeam(teamID);
             };
 
-            scope.$on('AddTeamMembers',function(event,members){
+            var unbind = $rootScope.$on('AddTeamMembers',function(event,members){
                 scope.teams = teamFactory.addTeamMembers(scope.selectedTeam,members);
             });
+            scope.$on('$destroy', unbind);
+
 
         	scope.regVal=/^[a-zA-Z0-9]*$/;
         	scope.restore();

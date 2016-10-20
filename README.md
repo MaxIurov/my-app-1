@@ -7,8 +7,9 @@ Review comments:
 2. defer - https://habrahabr.ru/post/183008/
   --> added personHttpService that reads and caches json file data
 3. https://docs.angularjs.org/api/ng/type/$rootScope.Scope - > $on(name, listener);
-  --> now i know how to unsubscribe from event, but here i need to monitor changes to sync parts of application
-————————
+  --> i found this link helpful -> http://stackoverflow.com/questions/11252780/whats-the-correct-way-to-communicate-between-controllers-in-angularjs
+  redone my events to use only $rootScope and $emit for training purposes
+--------------------
 4. почитать - > https://docs.angularjs.org/api/ng/filter/filter
   --> added $filter (in Tab2Ctrl Controller) and .filter (myCustomFilter for typeahead Directive)
 5. https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$digest

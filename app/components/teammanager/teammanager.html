@@ -8,7 +8,7 @@
             <input type="text" name="teamname" ng-model="teamName" ng-minlength="1" ng-pattern="regVal" required>
         </td>
         <td>
-            <button ng-disabled="teamForm.teamname.$invalid" ng-click="addNewTeam()">Add</button>
+            <button type="button" class="btn" ng-disabled="teamForm.teamname.$invalid" ng-click="addNewTeam()">Add</button>
         </td>
 <!--         <td>
             <button ng-click="clearStorage()">clear all teams</button>
@@ -23,16 +23,17 @@
 
 </form>
 <br/>
-
-<div ng-repeat="team in teams | orderBy:'name'">
-<div ng-class="{selected: team.id === selectedTeam}">
-    <div ng-click="selectTeam(team.id)"><b><i>{{team.id}} : {{team.name}} </i></b><button ng-click="deleteTeam(team.id)">Del</button></div>
-    <div ng-repeat="member in team.members | orderBy:'name'">
-        <div ng-show="team.id === selectedTeam" ng-click="deleteMember(team.id,member.id)" >
-        <person-name-tooltip person="member"></person-name-tooltip>
+<div id="teamlist">
+    <div ng-repeat="team in teams | orderBy:'name'">
+    <div ng-class="{selected: team.id === selectedTeam}">
+        <div ng-click="selectTeam(team.id)"><b><i>{{team.id}} : {{team.name}} </i></b><button type="button" class="btn" ng-click="deleteTeam(team.id)">Del</button></div>
+        <div ng-repeat="member in team.members | orderBy:'name'">
+            <div ng-show="team.id === selectedTeam" ng-click="deleteMember(team.id,member.id)" >
+            <person-name-tooltip person="member"></person-name-tooltip>
+            </div>
         </div>
+        <br/>
     </div>
-    <br/>
-</div>
+    </div>
 </div>
 </div>

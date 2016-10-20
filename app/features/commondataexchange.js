@@ -6,15 +6,15 @@ myApp.factory('commonDataExchange',['$rootScope',function($rootScope){
         selectedTeam: -1,
         changeSelectedTeam: function(selectTeam) {
             this.selectedTeam = selectTeam;
-            $rootScope.$broadcast('TeamSelected',selectTeam);
+            $rootScope.$emit('TeamSelected',selectTeam);
             return selectTeam;
         },
         deleteTeamMember: function(personID) {
-        	$rootScope.$broadcast('MemberDeleted',personID);
+        	$rootScope.$emit('MemberDeleted',personID);
         	return personID;
         },
         addTeamMembers: function(persons) {
-            $rootScope.$broadcast('AddTeamMembers',persons);
+            $rootScope.$emit('AddTeamMembers',persons);
             return persons;
         }
     };

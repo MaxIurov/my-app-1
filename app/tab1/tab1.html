@@ -4,7 +4,7 @@
 		<typeahead items="::persons" prompt="Start typing" title="name" subtitle="job" subsubtitle="grade" selecteditem="selPers" on-select="onItemSelected()"></typeahead>
 	</div>
 	<div class="rightsideclass">
-		<button ng-style="btnRefresh" ng-disabled="((tagManager.length==0) || (selectedTeam==-1))" ng-click="btnRefreshClicked()">Refresh</button>
+		<button type="button" class="btn" ng-style="btnRefresh" ng-disabled="((tagManager.length==0) || (selectedTeam==-1))" ng-click="btnRefreshClicked()">Refresh</button>
 		<br>
 		<div class="tagmanagerclass">
 			<div>
